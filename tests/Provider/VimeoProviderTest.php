@@ -105,7 +105,7 @@ class VimeoProviderTest extends AbstractProviderTest
 
         $media->setId(1023457);
 
-        $this->assertTrue($provider->requireThumbnails($media));
+        $this->assertTrue($provider->requireThumbnails());
 
         $provider->addFormat('big', ['width' => 200, 'height' => 100, 'constraint' => true]);
 
@@ -241,7 +241,7 @@ class VimeoProviderTest extends AbstractProviderTest
 
         $properties = $provider->getHelperProperties($media, 'admin');
 
-        $this->assertInternalType('array', $properties);
+        $this->assertIsArray($properties);
         $this->assertSame(100, $properties['height']);
         $this->assertSame(100, $properties['width']);
     }
