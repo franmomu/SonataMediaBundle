@@ -31,10 +31,7 @@ class BaseProviderTest extends AbstractProviderTest
     {
         $adapter = $this->createMock(Adapter::class);
 
-        $filesystem = $this->getMockBuilder(Filesystem::class)
-            ->setMethods(['get'])
-            ->setConstructorArgs([$adapter])
-            ->getMock();
+        $filesystem = $this->createMock(Filesystem::class);
 
         $cdn = new Server('/uploads/media');
 
