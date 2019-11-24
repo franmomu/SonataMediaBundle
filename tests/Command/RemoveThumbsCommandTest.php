@@ -22,7 +22,6 @@ use Sonata\MediaBundle\Tests\Entity\Media;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Filesystem\Tests\FilesystemTestCase;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
