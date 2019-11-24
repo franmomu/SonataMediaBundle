@@ -14,13 +14,11 @@ declare(strict_types=1);
 namespace Sonata\MediaBundle\Tests\Provider;
 
 use Gaufrette\Adapter;
-use Gaufrette\File;
 use Gaufrette\Filesystem;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\MediaBundle\CDN\CDNInterface;
 use Sonata\MediaBundle\CDN\Server;
 use Sonata\MediaBundle\Generator\DefaultGenerator;
-use Sonata\MediaBundle\Metadata\MetadataBuilderInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Sonata\MediaBundle\Provider\BaseProvider;
 use Sonata\MediaBundle\Tests\Entity\Media;
@@ -37,9 +35,6 @@ class BaseProviderTest extends AbstractProviderTest
             ->setMethods(['get'])
             ->setConstructorArgs([$adapter])
             ->getMock();
-        $file = $this->getMockBuilder(File::class)
-            ->setConstructorArgs(['foo', $filesystem])
-            ->getMock();
 
         $cdn = new Server('/uploads/media');
 
@@ -47,9 +42,7 @@ class BaseProviderTest extends AbstractProviderTest
 
         $thumbnail = $this->createMock(ThumbnailInterface::class);
 
-        $metadata = $this->createMock(MetadataBuilderInterface::class);
-
-        $provider = new TestProvider('test', $filesystem, $cdn, $generator, $thumbnail, $metadata);
+        $provider = new TestProvider('test', $filesystem, $cdn, $generator, $thumbnail);
         $this->assertInstanceOf(BaseProvider::class, $provider);
 
         return $provider;
@@ -62,14 +55,14 @@ class BaseProviderTest extends AbstractProviderTest
             'edit' => 'edit.twig',
         ]);
 
-        $this->assertInternalType('array', $provider->getTemplates());
+        $this->assertIsArray($provider->getTemplates());
         $this->assertSame('edit.twig', $provider->getTemplate('edit'));
 
         $this->assertInstanceOf(CDNInterface::class, $provider->getCdn());
 
         $provider->addFormat('small', []);
 
-        $this->assertInternalType('array', $provider->getFormat('small'));
+        $this->assertIsArray($provider->getFormat('small'));
 
         $media = new Media();
         $media->setContext('test');
