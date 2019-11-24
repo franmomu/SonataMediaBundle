@@ -83,9 +83,7 @@ class MediaExtensionTest extends TestCase
 
     public function getMediaService()
     {
-        $mediaService = $this->getMockBuilder(Pool::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $mediaService = $this->createMock(Pool::class);
         $mediaService->method('getProvider')->willReturn($this->getProvider());
 
         return $mediaService;
@@ -109,10 +107,7 @@ class MediaExtensionTest extends TestCase
     public function getTemplate()
     {
         if (null === $this->template) {
-            $this->template = $this->getMockBuilder(Template::class)
-                                   ->disableOriginalConstructor()
-                                   ->setMethods(['render'])
-                                   ->getMockForAbstractClass();
+            $this->template = $this->createMock(Template::class);
         }
 
         return $this->template;
@@ -121,9 +116,7 @@ class MediaExtensionTest extends TestCase
     public function getEnvironment()
     {
         if (null === $this->environment) {
-            $this->environment = $this->getMockBuilder(Environment::class)
-                ->disableOriginalConstructor()
-                ->getMock();
+            $this->environment = $this->createMock(Environment::class);
             $this->environment->method('loadTemplate')->willReturn($this->getTemplate());
         }
 

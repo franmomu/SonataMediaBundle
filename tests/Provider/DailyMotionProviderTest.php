@@ -48,9 +48,7 @@ class DailyMotionProviderTest extends AbstractProviderTest
             ->setMethods(['get'])
             ->setConstructorArgs([$adapter])
             ->getMock();
-        $file = $this->getMockBuilder(File::class)
-            ->setConstructorArgs(['foo', $filesystem])
-            ->getMock();
+        $file = $this->createMock(File::class);
         $filesystem->expects($this->any())->method('get')->willReturn($file);
 
         $cdn = new Server('/uploads/media');
@@ -212,10 +210,7 @@ class DailyMotionProviderTest extends AbstractProviderTest
             ->method('trans')
             ->willReturn('message');
 
-        $formMapper = $this->getMockBuilder(FormMapper::class)
-            ->setMethods(['add', 'getAdmin'])
-            ->disableOriginalConstructor()
-            ->getMock();
+        $formMapper = $this->createMock(FormMapper::class);
         $formMapper->expects($this->exactly(8))
             ->method('add')
             ->willReturn(null);

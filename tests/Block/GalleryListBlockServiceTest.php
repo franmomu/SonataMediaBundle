@@ -16,13 +16,13 @@ namespace Sonata\MediaBundle\Tests\Block;
 use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Model\Block;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\BlockBundle\Test\AbstractBlockServiceTestCase;
+use Sonata\BlockBundle\Test\BlockServiceTestCase;
 use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\MediaBundle\Block\GalleryListBlockService;
 use Sonata\MediaBundle\Model\GalleryManagerInterface;
 use Sonata\MediaBundle\Provider\Pool;
 
-class GalleryListBlockServiceTest extends AbstractBlockServiceTestCase
+class GalleryListBlockServiceTest extends BlockServiceTestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject|GalleryManagerInterface

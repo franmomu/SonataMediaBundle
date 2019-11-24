@@ -15,7 +15,7 @@ namespace Sonata\MediaBundle\Test\Entity;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Test\EntityManagerMockFactory;
+use Sonata\Doctrine\Test\EntityManagerMockFactory;
 use Sonata\MediaBundle\Entity\BaseMedia;
 use Sonata\MediaBundle\Entity\MediaManager;
 

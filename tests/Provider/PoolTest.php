@@ -32,12 +32,7 @@ class PoolTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Provider name cannot be empty, did you forget to call setProviderName() in your Media object?');
 
-        $mediaPool = $this
-            ->getMockBuilder(Pool::class)
-            ->disableOriginalConstructor()
-            ->setMethods(null)
-            ->getMock()
-        ;
+        $mediaPool = new Pool('context');
 
         $mediaPool->getProvider(null);
     }
@@ -47,12 +42,7 @@ class PoolTest extends TestCase
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Unable to retrieve provider named "provider_a" since there are no providers configured yet.');
 
-        $mediaPool = $this
-            ->getMockBuilder(Pool::class)
-            ->disableOriginalConstructor()
-            ->setMethods(null)
-            ->getMock()
-        ;
+        $mediaPool = new Pool('context');
 
         $mediaPool->getProvider('provider_a');
     }
@@ -62,12 +52,7 @@ class PoolTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Unable to retrieve the provider named "provider_c". Available providers are "provider_a", "provider_b".');
 
-        $mediaPool = $this
-            ->getMockBuilder(Pool::class)
-            ->disableOriginalConstructor()
-            ->setMethods(null)
-            ->getMock()
-        ;
+        $mediaPool = new Pool('context');
         $mediaPool->setProviders([
             'provider_a' => $this->createProvider('provider_a'),
             'provider_b' => $this->createProvider('provider_b'),

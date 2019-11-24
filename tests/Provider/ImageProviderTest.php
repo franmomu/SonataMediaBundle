@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\MediaBundle\Tests\Provider;
 
-use Gaufrette\Adapter;
 use Gaufrette\File;
 use Gaufrette\Filesystem;
 use Imagine\Image\Box;
@@ -38,15 +37,8 @@ class ImageProviderTest extends AbstractProviderTest
             $resizer->expects($this->any())->method('getBox')->will($box);
         }
 
-        $adapter = $this->createMock(Adapter::class);
-
-        $filesystem = $this->getMockBuilder(Filesystem::class)
-            ->setMethods(['get'])
-            ->setConstructorArgs([$adapter])
-            ->getMock();
-        $file = $this->getMockBuilder(File::class)
-            ->setConstructorArgs(['foo', $filesystem])
-            ->getMock();
+        $filesystem = $this->createMock(Filesystem::class);
+        $file = $this->createMock(File::class);
         $filesystem->expects($this->any())->method('get')->willReturn($file);
 
         $cdn = new Server('/uploads/media');

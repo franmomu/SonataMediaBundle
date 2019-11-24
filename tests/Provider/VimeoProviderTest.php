@@ -42,15 +42,8 @@ class VimeoProviderTest extends AbstractProviderTest
         $resizer->expects($this->any())->method('resize')->willReturn(true);
         $resizer->expects($this->any())->method('getBox')->willReturn(new Box(100, 100));
 
-        $adapter = $this->createMock(Adapter::class);
-
-        $filesystem = $this->getMockBuilder(Filesystem::class)
-            ->setMethods(['get'])
-            ->setConstructorArgs([$adapter])
-            ->getMock();
-        $file = $this->getMockBuilder(File::class)
-            ->setConstructorArgs(['foo', $filesystem])
-            ->getMock();
+        $filesystem = $this->createMock(Filesystem::class);
+        $file = $this->createMock(File::class);
         $filesystem->expects($this->any())->method('get')->willReturn($file);
 
         $cdn = new Server('/uploads/media');
@@ -214,10 +207,7 @@ class VimeoProviderTest extends AbstractProviderTest
             ->method('trans')
             ->willReturn('message');
 
-        $formMapper = $this->getMockBuilder(FormMapper::class)
-            ->setMethods(['add', 'getAdmin'])
-            ->disableOriginalConstructor()
-            ->getMock();
+        $formMapper = $this->createMock(FormMapper::class);
         $formMapper->expects($this->exactly(8))
             ->method('add')
             ->willReturn(null);
