@@ -56,13 +56,13 @@ abstract class AbstractProviderTest extends TestCase
             });
 
         $this->formBuilder = $this->createMock(FormBuilder::class);
-//        $this->formBuilder
-//            ->method('add')
-//            ->willReturnCallback(function ($name, $type = null): void {
-//                if (null !== $type) {
-//                    $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
-//                }
-//            });
+        $this->formBuilder
+            ->method('add')
+            ->willReturnCallback(function ($name, $type = null): void {
+                if (null !== $type) {
+                    $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
+                }
+            });
 
         $this->formBuilder->method('getOption')->willReturn('api');
 
