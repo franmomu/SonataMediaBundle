@@ -18,8 +18,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class FilesystemTestCase extends TestCase
 {
-    private $umask;
-
     protected $longPathNamesWindows = [];
 
     /**
@@ -31,6 +29,7 @@ class FilesystemTestCase extends TestCase
      * @var string
      */
     protected $workspace = null;
+    private $umask;
 
     /**
      * @var bool|null Flag for hard links on Windows
@@ -100,7 +99,7 @@ class FilesystemTestCase extends TestCase
     protected function assertFilePermissions($expectedFilePerms, $filePath)
     {
         $actualFilePerms = (int) substr(sprintf('%o', fileperms($filePath)), -3);
-        $this->assertEquals(
+        $this->assertSame(
             $expectedFilePerms,
             $actualFilePerms,
             sprintf('File permissions for %s must be %s. Actual %s', $filePath, $expectedFilePerms, $actualFilePerms)

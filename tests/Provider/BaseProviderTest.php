@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\MediaBundle\Tests\Provider;
 
-use Gaufrette\Adapter;
 use Gaufrette\Filesystem;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\MediaBundle\CDN\CDNInterface;
@@ -29,8 +28,6 @@ class BaseProviderTest extends AbstractProviderTest
 {
     public function getProvider()
     {
-        $adapter = $this->createMock(Adapter::class);
-
         $filesystem = $this->createMock(Filesystem::class);
 
         $cdn = new Server('/uploads/media');

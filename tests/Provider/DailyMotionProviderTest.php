@@ -39,8 +39,8 @@ class DailyMotionProviderTest extends AbstractProviderTest
         }
 
         $resizer = $this->createMock(ResizerInterface::class);
-        $resizer->expects($this->any())->method('resize')->willReturn(true);
-        $resizer->expects($this->any())->method('getBox')->willReturn(new Box(100, 100));
+        $resizer->method('resize')->willReturn(true);
+        $resizer->method('getBox')->willReturn(new Box(100, 100));
 
         $adapter = $this->createMock(Adapter::class);
 
@@ -49,7 +49,7 @@ class DailyMotionProviderTest extends AbstractProviderTest
             ->setConstructorArgs([$adapter])
             ->getMock();
         $file = $this->createMock(File::class);
-        $filesystem->expects($this->any())->method('get')->willReturn($file);
+        $filesystem->method('get')->willReturn($file);
 
         $cdn = new Server('/uploads/media');
 
@@ -206,7 +206,7 @@ class DailyMotionProviderTest extends AbstractProviderTest
         $provider = $this->getProvider();
 
         $admin = $this->createMock(AdminInterface::class);
-        $admin->expects($this->any())
+        $admin
             ->method('trans')
             ->willReturn('message');
 
