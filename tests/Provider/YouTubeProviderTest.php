@@ -16,7 +16,6 @@ namespace Sonata\MediaBundle\Tests\Provider;
 use Buzz\Browser;
 use Buzz\Message\AbstractMessage;
 use Buzz\Message\Response;
-use Gaufrette\Adapter;
 use Gaufrette\File;
 use Gaufrette\Filesystem;
 use Imagine\Image\Box;
@@ -39,12 +38,12 @@ class YouTubeProviderTest extends AbstractProviderTest
         }
 
         $resizer = $this->createMock(ResizerInterface::class);
-        $resizer->expects($this->any())->method('resize')->willReturn(true);
-        $resizer->expects($this->any())->method('getBox')->willReturn(new Box(100, 100));
+        $resizer->method('resize')->willReturn(true);
+        $resizer->method('getBox')->willReturn(new Box(100, 100));
 
         $filesystem = $this->createMock(Filesystem::class);
         $file = $this->createMock(File::class);
-        $filesystem->expects($this->any())->method('get')->willReturn($file);
+        $filesystem->method('get')->willReturn($file);
 
         $cdn = new Server('/uploads/media');
 
@@ -206,7 +205,7 @@ class YouTubeProviderTest extends AbstractProviderTest
         $provider = $this->getProvider();
 
         $admin = $this->createMock(AdminInterface::class);
-        $admin->expects($this->any())
+        $admin
             ->method('trans')
             ->willReturn('message');
 

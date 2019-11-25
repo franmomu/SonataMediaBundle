@@ -91,7 +91,7 @@ class CleanMediaCommandTest extends FilesystemTestCase
         $this->fileSystemLocal = $fileSystemLocal = $this->createMock(Local::class);
         $this->fileSystemLocal->expects($this->once())->method('getDirectory')->willReturn($this->workspace);
 
-        $this->container->expects($this->any())
+        $this->container
             ->method('get')
             ->willReturnCallback(static function ($id) use ($pool, $mediaManager, $fileSystemLocal) {
                 switch ($id) {
@@ -154,10 +154,10 @@ class CleanMediaCommandTest extends FilesystemTestCase
         ];
 
         $provider = $this->createMock(FileProvider::class);
-        $provider->expects($this->any())->method('getName')->willReturn('fooprovider');
+        $provider->method('getName')->willReturn('fooprovider');
 
-        $this->pool->expects($this->any())->method('getContexts')->willReturn(['foo' => $context]);
-        $this->pool->expects($this->any())->method('getProviders')->willReturn([$provider]);
+        $this->pool->method('getContexts')->willReturn(['foo' => $context]);
+        $this->pool->method('getProviders')->willReturn([$provider]);
 
         $media = $this->createMock(MediaInterface::class);
 
@@ -188,10 +188,10 @@ class CleanMediaCommandTest extends FilesystemTestCase
         ];
 
         $provider = $this->createMock(FileProvider::class);
-        $provider->expects($this->any())->method('getName')->willReturn('fooprovider');
+        $provider->method('getName')->willReturn('fooprovider');
 
-        $this->pool->expects($this->any())->method('getContexts')->willReturn(['foo' => $context]);
-        $this->pool->expects($this->any())->method('getProviders')->willReturn([$provider]);
+        $this->pool->method('getContexts')->willReturn(['foo' => $context]);
+        $this->pool->method('getProviders')->willReturn([$provider]);
 
         $media = $this->createMock(MediaInterface::class);
 
@@ -231,10 +231,10 @@ class CleanMediaCommandTest extends FilesystemTestCase
         ];
 
         $provider = $this->createMock(FileProvider::class);
-        $provider->expects($this->any())->method('getName')->willReturn('fooprovider');
+        $provider->method('getName')->willReturn('fooprovider');
 
-        $this->pool->expects($this->any())->method('getContexts')->willReturn(['foo' => $context]);
-        $this->pool->expects($this->any())->method('getProviders')->willReturn([$provider]);
+        $this->pool->method('getContexts')->willReturn(['foo' => $context]);
+        $this->pool->method('getProviders')->willReturn([$provider]);
 
         $this->mediaManager->expects($this->once())->method('findOneBy')
             ->with($this->equalTo(['id' => 1, 'context' => 'foo']))
@@ -269,10 +269,10 @@ class CleanMediaCommandTest extends FilesystemTestCase
         ];
 
         $provider = $this->createMock(FileProvider::class);
-        $provider->expects($this->any())->method('getName')->willReturn('fooprovider');
+        $provider->method('getName')->willReturn('fooprovider');
 
-        $this->pool->expects($this->any())->method('getContexts')->willReturn(['foo' => $context]);
-        $this->pool->expects($this->any())->method('getProviders')->willReturn([$provider]);
+        $this->pool->method('getContexts')->willReturn(['foo' => $context]);
+        $this->pool->method('getProviders')->willReturn([$provider]);
 
         $this->mediaManager->expects($this->once())->method('findOneBy')
             ->with($this->equalTo(['id' => 1, 'context' => 'foo']))

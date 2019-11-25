@@ -54,7 +54,7 @@ class CloudFrontTest extends TestCase
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Unable to flush : ');
         $client = $this->createMock(CloudFrontClientSpy::class);
-        $client->expects($this->exactly(1))->method('createInvalidation')->willReturn(new CloudFrontResultSpy(true));
+        $client->expects($this->once())->method('createInvalidation')->willReturn(new CloudFrontResultSpy(true));
         $cloudFront = $this->getMockBuilder(CloudFront::class)
             ->setConstructorArgs(['/foo', 'secret', 'key', 'xxxxxxxxxxxxxx'])
             ->setMethods(null)
