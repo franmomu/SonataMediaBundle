@@ -1,0 +1,50 @@
+parameters:
+    'sonata.media.manager.media.class': 'Sonata\MediaBundle\Tests\App\Manager\MediaManager'
+
+framework:
+    secret: secret
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    SonataMediaBundle:
+                        type: annotation
+                        is_bundle: false
+                        dir: '%kernel.project_dir%/Entity'
+                        prefix: 'Sonata\MediaBundle\Tests\App\'
+    dbal:
+        driver: 'pdo_sqlite'
+#        dsn: '%kernel.root_dir%/app.sqlite'
+
+sonata_media:
+    default_context: default
+    db_driver: 'doctrine_orm'
+    class:
+        media: Sonata\MediaBundle\Tests\App\Entity\Media
+    contexts:
+        default:
+    cdn:
+        server:
+            path: /uploads/media
+    filesystem:
+        local:
+            directory:  '%kernel.root_dir%/../public/uploads/media'
+            create:     false
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener:          true
+    format_listener:        true
+    view:
+        view_response_listener: force
+    body_converter:
+        enabled: true
+        validate: true

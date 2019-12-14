@@ -375,12 +375,12 @@ class MediaController
     {
         $form = $this->formFactory->createNamed(null, ApiMediaType::class, $media, [
             'provider_name' => $provider->getName(),
-            'csrf_protection' => false,
+//            'csrf_protection' => false,
         ]);
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $media = $form->getData();
             $this->mediaManager->save($media);
 
