@@ -1,7 +1,9 @@
 framework:
     secret: secret
-    templating:
-        engines: ['twig']
+    form:
+        enabled: true
+    translator:
+        enabled: true
 
 twig:
     paths:
