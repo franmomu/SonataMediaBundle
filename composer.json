@@ -80,7 +80,7 @@
         "sonata-project/admin-bundle": "^3.18.3",
         "sonata-project/block-bundle": "^3.16.1",
         "sonata-project/datagrid-bundle": "^2.5",
-        "sonata-project/doctrine-orm-admin-bundle": "^3.13",
+        "sonata-project/doctrine-orm-admin-bundle": "^3.14",
         "sonata-project/formatter-bundle": "^3.4 || ^4.0",
         "sonata-project/notification-bundle": "^3.3",
         "sonata-project/seo-bundle": "^2.5",
