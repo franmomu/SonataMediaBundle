@@ -33,15 +33,15 @@ final class MediaControllerTest extends WebTestCase
         $doctrine = $kernel->getContainer()->get('doctrine');
         $application = new Application($kernel);
         $application->setAutoExit(false);
-
-        $interfaces = class_implements(CreateDatabaseDoctrineCommand::class);
-        if (isset($interfaces[ContainerAwareInterface::class])) {
-            $application->add(new DropDatabaseDoctrineCommand());
-            $application->add(new CreateDatabaseDoctrineCommand());
-        } else {
-            $application->add(new DropDatabaseDoctrineCommand($doctrine));
-            $application->add(new CreateDatabaseDoctrineCommand($doctrine));
-        }
+//
+//        $interfaces = class_implements(CreateDatabaseDoctrineCommand::class);
+//        if (isset($interfaces[ContainerAwareInterface::class])) {
+//            $application->add(new DropDatabaseDoctrineCommand());
+//            $application->add(new CreateDatabaseDoctrineCommand());
+//        } else {
+//            $application->add(new DropDatabaseDoctrineCommand($doctrine));
+//            $application->add(new CreateDatabaseDoctrineCommand($doctrine));
+//        }
 
         $application->run(new ArrayInput([
             'command' => 'doctrine:database:drop',
